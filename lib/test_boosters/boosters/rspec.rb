@@ -28,12 +28,12 @@ module TestBoosters
         @rspec_options ||= begin
           output_formatter = ENV.fetch("TB_RSPEC_FORMATTER", "documentation")
           # rubocop:disable LineLength
-          "#{ENV["TB_RSPEC_OPTIONS"]} --format #{output_formatter} --require #{formatter_path} --format SemaphoreFormatter --out #{report_path}"
+          "#{ENV["TB_RSPEC_OPTIONS"]} --format RspecJunitFormatter --require #{formatter_path} --format progress --out #{report_path}"
         end
       end
 
       def report_path
-        @report_path ||= ENV["REPORT_PATH"] || "#{ENV["HOME"]}/rspec_report.json"
+        @report_path ||= ENV["REPORT_PATH"] || "#{ENV["HOME"]}/rspec_report.xml"
       end
 
       def split_configuration_path
